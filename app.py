@@ -10,7 +10,12 @@ import detect_mask_image
 
 # Setting custom Page Title and Icon with changed layout and sidebar state
 st.set_page_config(page_title='Face Mask Detector', page_icon='😷', layout='centered', initial_sidebar_state='expanded')
-
+prototxtPath = ".\\face_detector\\deploy.prototxt"
+weightsPath = ".\\face_detector\\res10_300x300_ssd_iter_140000.caffemodel"
+faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
+# load the face mask detector model from disk
+print("[INFO] loading face mask detector model...")
+maskNet = load_model("mask_detector.model")
 
 def local_css(file_name):
     """ Method for reading styles.css and applying necessary changes to HTML"""
@@ -61,10 +66,6 @@ def mask_image():
 
             # ensure the bounding boxes fall within the dimensions of
             # the frame
-            if startX > w:
-                continue
-            if startY > h:
-                continue
             (startX, startY) = (max(0, startX), max(0, startY))
             (endX, endY) = (min(w - 1, endX), min(h - 1, endY))
 
@@ -97,6 +98,68 @@ def mask_image():
             RGB_img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 mask_image()
 
+def detect_and_predict_mask(frame, faceNet, maskNet):
+	# grab the dimensions of the frame and then construct a blob
+	# from it
+	(h, w) = frame.shape[:2]
+	blob = cv2.dnn.blobFromImage(frame, 1.0, (300, 300),
+		(104.0, 177.0, 123.0))
+
+	# pass the blob through the network and obtain the face detections
+	faceNet.setInput(blob)
+	detections = faceNet.forward()
+
+	# initialize our list of faces, their corresponding locations,
+	# and the list of predictions from our face mask network
+	faces = []
+	locs = []
+	preds = []
+
+	# loop over the detections
+	for i in range(0, detections.shape[2]):
+		# extract the confidence (i.e., probability) associated with
+		# the detection
+		confidence = detections[0, 0, i, 2]
+
+		# filter out weak detections by ensuring the confidence is
+		# greater than the minimum confidence
+		if confidence > 0.5:
+			# compute the (x, y)-coordinates of the bounding box for
+			# the object
+			box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
+			(startX, startY, endX, endY) = box.astype("int")
+
+			# ensure the bounding boxes fall within the dimensions of
+			# the frame
+			(startX, startY) = (max(0, startX), max(0, startY))
+			(endX, endY) = (min(w - 1, endX), min(h - 1, endY))
+
+			# extract the face ROI, convert it from BGR to RGB channel
+			# ordering, resize it to 224x224, and preprocess it
+			face = frame[startY:endY, startX:endX]
+			if face.any():
+				face = cv2.cvtColor(face, cv2.COLOR_BGR2RGB)
+				face = cv2.resize(face, (224, 224))
+				face = img_to_array(face)
+				face = preprocess_input(face)
+
+				# add the face and bounding boxes to their respective
+				# lists
+				faces.append(face)
+				locs.append((startX, startY, endX, endY))
+
+	# only make a predictions if at least one face was detected
+	if len(faces) > 0:
+		# for faster inference we'll make batch predictions on *all*
+		# faces at the same time rather than one-by-one predictions
+		# in the above `for` loop
+		faces = np.array(faces, dtype="float32")
+		preds = maskNet.predict(faces, batch_size=32)
+
+	# return a 2-tuple of the face locations and their corresponding
+	# locations
+	return (locs, preds)
+
 def mask_detection():
     local_css("css/styles.css")
     st.markdown('<h1 align="center">😷 Face Mask Detection</h1>', unsafe_allow_html=True)
@@ -120,4 +183,34 @@ def mask_detection():
     if choice == 'Webcam':
         st.markdown('<h2 align="center">Detection on Webcam</h2>', unsafe_allow_html=True)
         st.markdown('<h3 align="center">This feature will be available soon!</h3>', unsafe_allow_html=True)
+        img_file_buffer = st.camera_input("Take a picture")
+
+        if img_file_buffer is not None:
+            bytes_data = img_file_buffer.getvalue()
+            frame = cv2.imdecode(np.frombuffer(bytes_data, np.uint8), cv2.IMREAD_COLOR)
+            #st.markdown('<h3 align="center">Recognizing...</h3>', unsafe_allow_html=True)
+
+            (locs, preds) = detect_and_predict_mask(frame, faceNet, maskNet)
+
+            # loop over the detected face locations and their corresponding
+            # locations
+            for (box, pred) in zip(locs, preds):
+                # unpack the bounding box and predictions
+                (startX, startY, endX, endY) = box
+                (mask, withoutMask) = pred
+
+                # determine the class label and color we'll use to draw
+                # the bounding box and text
+                label = "Mask" if mask > withoutMask else "No Mask"
+                color = (0, 255, 0) if label == "Mask" else (0, 0, 255)
+                    
+                # include the probability in the label
+                label = "{}: {:.2f}%".format(label, max(mask, withoutMask) * 100)
+
+                # display the label and bounding box rectangle on the output
+                # frame
+                cv2.putText(frame, label, (startX, startY - 10),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
+                cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
+            
 mask_detection()
