@@ -2,7 +2,7 @@ import streamlit as st
 from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration
 import av
 import os
-from PIL import Image, ImageEnhance
+from PIL import Image
 import numpy as np
 import cv2
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
@@ -141,7 +141,7 @@ def mask_detection():
         webrtc_ctx = webrtc_streamer(
             key="WYH",
             mode=WebRtcMode.SENDRECV,
-            #rtc_configuration=RTC_CONFIGURATION,
+            rtc_configuration=RTC_CONFIGURATION,
             media_stream_constraints={"video": True, "audio": False},
             video_processor_factory=VideoProcessor,
             async_processing=True,
