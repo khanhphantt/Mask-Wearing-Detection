@@ -1,7 +1,7 @@
-from pyrsistent import m
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer, WebRtcMode, RTCConfiguration
 import av
+import os
 from PIL import Image, ImageEnhance
 import numpy as np
 import cv2
@@ -13,8 +13,14 @@ from tensorflow.keras.models import load_model
 st.set_page_config(page_title='Face Mask Detector', page_icon='😷', layout='centered', initial_sidebar_state='expanded')
 
 # Load models
-prototxtPath = ".\\face_detector\\deploy.prototxt"
-weightsPath = ".\\face_detector\\res10_300x300_ssd_iter_140000.caffemodel"
+prototxtPath = os.path.sep.join([
+    "face_detector", 
+    "deploy.prototxt"
+    ])
+weightsPath = os.path.sep.join([
+    "face_detector", 
+    "res10_300x300_ssd_iter_140000.caffemodel"
+    ])
 faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
 print("[INFO] loading face mask detector model...")
 maskNet = load_model("mask_detector.model")
