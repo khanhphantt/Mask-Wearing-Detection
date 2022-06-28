@@ -61,6 +61,10 @@ def mask_image():
 
             # ensure the bounding boxes fall within the dimensions of
             # the frame
+            if startX > w:
+				continue
+			if startY > h:
+				continue
             (startX, startY) = (max(0, startX), max(0, startY))
             (endX, endY) = (min(w - 1, endX), min(h - 1, endY))
 
