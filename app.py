@@ -25,9 +25,9 @@ faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
 print("[INFO] loading face mask detector model...")
 maskNet = load_model("mask_detector.model")
 
-#RTC_CONFIGURATION = RTCConfiguration(
-#    {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
-#)
+RTC_CONFIGURATION = RTCConfiguration(
+    {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
+)
 
 class VideoProcessor:
     def recv(self, frame):
