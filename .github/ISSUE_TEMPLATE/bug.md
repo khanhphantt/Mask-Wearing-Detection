@@ -7,4 +7,3 @@ labels: "bug"
 ## 🐛 Bug Report
 
 (A clear and concise description of what the bug is.)
-

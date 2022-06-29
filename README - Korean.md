@@ -20,13 +20,13 @@
 <a href="https://www.buymeacoffee.com/chandrikadeb7" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
 ## :innocent: 제작 동기
-코로나19 팬데믹이 계속되는 가운데에, 대중교통, 주택 지구, 대규모 제조업체 및 기타 기업들에서 안전을 위해 마스크 인식 시스템을 필요로 하는 수요가 높았지만, 효율적인 마스크 인식 시스템을 찾아보긴 어려웠습니다. __'마스크를 착용하고 있는'__ 대규모의 데이터가 없어서 이 작업에 어려움이 있었습니다. 
+코로나19 팬데믹이 계속되는 가운데에, 대중교통, 주택 지구, 대규모 제조업체 및 기타 기업들에서 안전을 위해 마스크 인식 시스템을 필요로 하는 수요가 높았지만, 효율적인 마스크 인식 시스템을 찾아보긴 어려웠습니다. __'마스크를 착용하고 있는'__ 대규모의 데이터가 없어서 이 작업에 어려움이 있었습니다.
 
 ## PPT와 프로젝트 발표는 ₹1000 ($15, 약 16000원)에 구매하실 수 있습니다!
 관심이 있으시다면 chandrikadeb7@gmail.com으로 연락 주세요!
 
 # 🌟 [할인된 가격으로 구매하고 싶다면?](https://gum.co/GetFaceMask)
- 
+
 ## :hourglass: 데포 버전
 :movie_camera: [유튜브 링크](https://youtu.be/wYwW7gAYyxw)
 
@@ -61,7 +61,7 @@
 
 이미지는 실제로 마스크를 착용하고 있는 사진을 사용했습니다. 이미지는 다음과 같은 소스에서 수집하였습니다:
 * __Bing 검색 API__ ([See Python script](https://github.com/chandrikadeb7/Face-Mask-Detection/blob/master/search.py))
-* __Kaggle 데이터셋__ 
+* __Kaggle 데이터셋__
 * __RMFD 데이터셋__ ([See here](https://github.com/X-zhangyang/Real-World-Masked-Face-Dataset))
 
 ## :key: 필요조건
@@ -106,14 +106,14 @@ $ python3 detect_mask_image.py --image images/pic1.jpeg
 
 3. 실시간 영상에서의 마스크 착용여부를 확인하기 위해선 아래 명령어를 입력하세요:
 ```
-$ python3 detect_mask_video.py 
+$ python3 detect_mask_video.py
 ```
 ## :key: 결과
 
 #### 우리 모델은 <code>tensorflow-gpu==2.5.0</code>를 통한 학습 이후 98%의 정확도를 보여주고 있습니다.
 
 <a href="https://colab.research.google.com/drive/1AZ0W2QAHnM3rcj0qbTmc7c3fAMPCowQ1?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-####          
+####
 ![](https://github.com/chandrikadeb7/Face-Mask-Detection/blob/master/Readme_images/Screenshot%202020-06-01%20at%209.48.27%20PM.png)
 
 #### 우리는 훈련 기간동안 아래와 같은 정확도/놓침 변화를 가졌습니다.
@@ -125,7 +125,7 @@ Tensorflow & Streamlit를 사용해서 마스크 감지 시스템 웹 어플리�
 
 명령어
 ```
-$ streamlit run app.py 
+$ streamlit run app.py
 ```
 ## 실행 이미지
 
@@ -140,7 +140,7 @@ $ streamlit run app.py
 <p align="center">결과</p>
 
 ## :clap: 이제 다 끝났습니다!
-문의사항이나 의문이 있다면 자유롭게 이메일을 남겨주세요! 
+문의사항이나 의문이 있다면 자유롭게 이메일을 남겨주세요!
 :email: chandrikadeb7@gmail.com
 
 ---
@@ -233,4 +233,3 @@ $ streamlit run app.py
 
 ## :eyes: 라이센스
 MIT 라이센스 © [Chandrika Deb](https://github.com/chandrikadeb7/Face-Mask-Detection/blob/master/LICENSE)
-

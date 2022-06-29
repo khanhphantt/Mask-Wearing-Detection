@@ -1,4 +1,4 @@
-# Mask Detection using ResNet50 v2 
+# Mask Detection using ResNet50 v2
 
 
 ## 🚀&nbsp; Steps to run the ResNet50 v2
@@ -18,11 +18,11 @@ python3 detect_mask_image.py --image images/pic1.jpeg --model ResNet50_v2/ResNet
 ```
 
 
-## :key:&nbsp; Result 
+## :key:&nbsp; Result
 
 ![alt text](Readme_images/Matrix.png)
 
-### Training Loss and Accuracy 
+### Training Loss and Accuracy
 ![alt text](Readme_images/Graph.png)
 
 ## :star:&nbsp; Output
@@ -31,4 +31,3 @@ python3 detect_mask_image.py --image images/pic1.jpeg --model ResNet50_v2/ResNet
 
 ## :star:&nbsp; Output Video
 ![alt text](Readme_images/Output.gif)
-

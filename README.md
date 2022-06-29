@@ -20,13 +20,13 @@
 <a href="https://www.buymeacoffee.com/chandrikadeb7" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
 ## :innocent: Motivation
-Amid the ongoing COVID-19 pandemic, there are no efficient face mask detection applications which are now in high demand for transportation means, densely populated areas, residential districts, large-scale manufacturers and other enterprises to ensure safety. The absence of large datasets of __‘with_mask’__ images has made this task cumbersome and challenging. 
+Amid the ongoing COVID-19 pandemic, there are no efficient face mask detection applications which are now in high demand for transportation means, densely populated areas, residential districts, large-scale manufacturers and other enterprises to ensure safety. The absence of large datasets of __‘with_mask’__ images has made this task cumbersome and challenging.
 
 ## PPT and Project Report sharing costs ₹1000 ($15)
 If interested, contact me at chandrikadeb7@gmail.com
 
 # 🌟 [Purchase on Gumroad](https://gum.co/GetFaceMask)
- 
+
 ## :hourglass: Project Demo
 :movie_camera: [YouTube Demo Link](https://youtu.be/wYwW7gAYyxw)
 
@@ -62,7 +62,7 @@ This dataset consists of __4095 images__ belonging to two classes:
 The images used were real images of faces wearing masks. The images were collected from the following sources:
 
 * __Bing Search API__ ([See Python script](https://github.com/chandrikadeb7/Face-Mask-Detection/blob/master/search.py))
-* __Kaggle datasets__ 
+* __Kaggle datasets__
 * __RMFD dataset__ ([See here](https://github.com/X-zhangyang/Real-World-Masked-Face-Dataset))
 
 ## :key: Prerequisites
@@ -75,7 +75,7 @@ All the dependencies and required libraries are included in the file <code>requi
 $ git clone https://github.com/chandrikadeb7/Face-Mask-Detection.git
 ```
 
-2. Change your directory to the cloned repo 
+2. Change your directory to the cloned repo
 ```
 $ cd Face-Mask-Detection
 ```
@@ -100,21 +100,21 @@ $ pip3 install -r requirements.txt
 $ python3 train_mask_detector.py --dataset dataset
 ```
 
-2. To detect face masks in an image type the following command: 
+2. To detect face masks in an image type the following command:
 ```
 $ python3 detect_mask_image.py --image images/pic1.jpeg
 ```
 
 3. To detect face masks in real-time video streams type the following command:
 ```
-$ python3 detect_mask_video.py 
+$ python3 detect_mask_video.py
 ```
 ## :key: Results
 
 #### Our model gave 98% accuracy for Face Mask Detection after training via <code>tensorflow-gpu==2.5.0</code>
 
 <a href="https://colab.research.google.com/drive/1AZ0W2QAHnM3rcj0qbTmc7c3fAMPCowQ1?usp=sharing"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-####          
+####
 ![](https://github.com/chandrikadeb7/Face-Mask-Detection/blob/master/Readme_images/Screenshot%202020-06-01%20at%209.48.27%20PM.png)
 
 #### We got the following accuracy/loss training curve plot
@@ -126,7 +126,7 @@ Face Mask Detector webapp using Tensorflow & Streamlit
 
 command
 ```
-$ streamlit run app.py 
+$ streamlit run app.py
 ```
 ## Images
 
@@ -141,7 +141,7 @@ $ streamlit run app.py
 <p align="center">Results</p>
 
 ## :clap: And it's done!
-Feel free to mail me for any doubts/query 
+Feel free to mail me for any doubts/query
 :email: chandrikadeb7@gmail.com
 
 ---
@@ -205,7 +205,7 @@ Awarded Runners Up position in [Amdocs Innovation India ICE Project Fair]( https
 ## :handshake: Contribution
 
 #### Please read the Contribution Guidelines [here](https://github.com/chandrikadeb7/Face-Mask-Detection/blob/master/CONTRIBUTING.md)
-Feel free to **file a new issue** with a respective title and description on the the [Face-Mask-Detection](https://github.com/chandrikadeb7/Face-Mask-Detection/issues) repository. If you already found a solution to your problem, **I would love to review your pull request**! 
+Feel free to **file a new issue** with a respective title and description on the the [Face-Mask-Detection](https://github.com/chandrikadeb7/Face-Mask-Detection/issues) repository. If you already found a solution to your problem, **I would love to review your pull request**!
 
 ## :handshake: Our Contributors
 
@@ -223,4 +223,3 @@ Made with :heart:&nbsp;  by [Chandrika Deb](https://github.com/chandrikadeb7)
 
 ## :eyes: License
 MIT © [Chandrika Deb](https://github.com/chandrikadeb7/Face-Mask-Detection/blob/master/LICENSE)
-
