@@ -146,6 +146,10 @@ def mask_image(image):
 def mask_detection():
     local_css("css/styles.css")
     st.markdown(
+        '<h6 align="center">TT monthly challenge - Jun 2022</h6>',
+        unsafe_allow_html=True,
+    )
+    st.markdown(
         '<h1 align="center">😷 Face Mask Detection</h1>',
         unsafe_allow_html=True,
     )
@@ -159,8 +163,11 @@ def mask_detection():
         image_file = st.sidebar.file_uploader("", type=["jpg", "jpeg", "png"])
 
         if not image_file:
+            text = """This is a detection example.
+            Try your input from the left sidebar.
+            """
             st.markdown(
-                '<h4 align="center">Detection example</h2>',
+                '<h6 align="center">' + text + "</h6>",
                 unsafe_allow_html=True,
             )
             st.image(example_image, use_column_width=True)
